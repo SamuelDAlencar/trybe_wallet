@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Proptypes from 'prop-types';
 import { logIn } from '../actions/index';
-import store from '../store';
 
 class Login extends React.Component {
   constructor() {
@@ -39,7 +38,6 @@ class Login extends React.Component {
 
     dispatchInfo(email);
     history.push('/carteira');
-    console.log(store.getState());
   }
 
   render() {

@@ -1,9 +1,7 @@
 import { LOG_IN } from '../actions/index';
 
 const INITIAL_STATE = {
-  user: {
-    email: '',
-  },
+  email: '',
 };
 
 const userReducer = (state = INITIAL_STATE, { type, payload }) => {
