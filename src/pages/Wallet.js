@@ -47,11 +47,9 @@ class Wallet extends React.Component {
         <header>
           <h4 data-testid="email-field">{email}</h4>
           <h4 data-testid="total-field">
-            {
-              expenses
-                .reduce((acc, expense) => acc + (
-                  expense.value * currencies[expense.currency].ask), 0)
-            }
+            {expenses
+              .reduce((acc, expense) => acc + (
+                expense.value * expense.exchangeRates[expense.currency].ask), 0)}
           </h4>
           <h4 data-testid="header-currency-field">BRL</h4>
         </header>
@@ -122,6 +120,32 @@ class Wallet extends React.Component {
             Adicionar despesa
           </button>
         </form>
+        <table>
+          <thead>
+            <tr>
+              <td>Descrição</td>
+              <td>Tag</td>
+              <td>Método de pagamento</td>
+              <td>Valor</td>
+              <td>Câmbio utilizado</td>
+              <td>Valor convertido</td>
+              <td>Moeda de conversão</td>
+            </tr>
+          </thead>
+          <tbody>
+            {expenses.map((expense) => (
+              <tr key={ expense.id }>
+                <td>{expense.description}</td>
+                <td>{expense.tag}</td>
+                <td>{expense.method}</td>
+                <td>{expense.value}</td>
+                <td>{expense.currency}</td>
+                <td>{expense.value * expense.exchangeRates[expense.currency].ask}</td>
+                <td>{expense.exchangeRates[expense.currency].name}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </>
     );
   }
