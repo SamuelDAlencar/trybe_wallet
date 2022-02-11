@@ -10,7 +10,7 @@ export const requestCurrencies = (payload) => ({ type: REQUEST_CURRENCIES, paylo
 export const saveExpense = (payload) => ({ type: SAVE_EXPENSE, payload });
 export const deleteExpense = (payload) => ({ type: DELETE_EXPENSE, payload });
 
-export const saveCurrencies = () => async (dispatch) => {
+export const fetchCurrencies = () => async (dispatch) => {
   try {
     const data = await fetchAPI();
     dispatch(requestCurrencies(data));

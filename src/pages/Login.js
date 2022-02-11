@@ -9,10 +9,10 @@ class Login extends React.Component {
     this.state = {
       email: '',
       password: '',
-      isDisabled: true,
+      buttonDisabled: true,
     };
     this.handleInput = this.handleInput.bind(this);
-    this.submitInfo = this.submitInfo.bind(this);
+    this.logButton = this.logButton.bind(this);
   }
 
   handleInput({ target: { id, value } }) {
@@ -25,23 +25,23 @@ class Login extends React.Component {
       if (password.length >= MIN_LENGTH
         && email.includes('@')
         && email.includes('.com')) {
-        this.setState({ isDisabled: false });
+        this.setState({ buttonDisabled: false });
       } else {
-        this.setState({ isDisabled: true });
+        this.setState({ buttonDisabled: true });
       }
     });
   }
 
-  submitInfo() {
-    const { dispatchInfo, history } = this.props;
+  logButton() {
+    const { logInProp, history } = this.props;
     const { email } = this.state;
 
-    dispatchInfo(email);
+    logInProp(email);
     history.push('/carteira');
   }
 
   render() {
-    const { isDisabled } = this.state;
+    const { buttonDisabled } = this.state;
     return (
       <form>
         <label htmlFor="email">
@@ -62,7 +62,11 @@ class Login extends React.Component {
             onChange={ (e) => this.handleInput(e) }
           />
         </label>
-        <button type="button" disabled={ isDisabled } onClick={ this.submitInfo }>
+        <button
+          type="button"
+          disabled={ buttonDisabled }
+          onClick={ this.logButton }
+        >
           Entrar
         </button>
       </form>
@@ -71,11 +75,11 @@ class Login extends React.Component {
 }
 
 Login.propTypes = {
-  dispatchInfo: Proptypes.func,
+  logInProp: Proptypes.func,
 }.isRequired;
 
 const mapDispatchToProps = (dispatch) => ({
-  dispatchInfo: (state) => dispatch(logIn(state)),
+  logInProp: (state) => dispatch(logIn(state)),
 });
 
 export default connect(null, mapDispatchToProps)(Login);
