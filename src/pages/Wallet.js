@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
-import { dispatchCurrencies, saveExpense } from '../actions';
+import { dispatchCurrencies, saveExpense, deleteExpense } from '../actions';
 
 class Wallet extends React.Component {
   constructor() {
@@ -12,6 +12,7 @@ class Wallet extends React.Component {
     };
     this.handleInput = this.handleInput.bind(this);
     this.addExpense = this.addExpense.bind(this);
+    this.deleteFunc = this.deleteFunc.bind(this);
   }
 
   componentDidMount() {
@@ -39,6 +40,12 @@ class Wallet extends React.Component {
     });
   }
 
+  deleteFunc({ target }) {
+    const { removeExpense } = this.props;
+    const { parentNode: { parentNode: { id } } } = target;
+    removeExpense(id);
+  }
+
   render() {
     const { email, currencies, expenses } = this.props;
     const { value } = this.state;
@@ -47,9 +54,10 @@ class Wallet extends React.Component {
         <header>
           <h4 data-testid="email-field">{email}</h4>
           <h4 data-testid="total-field">
-            {expenses
+            {(expenses
               .reduce((acc, expense) => acc + (
-                expense.value * expense.exchangeRates[expense.currency].ask), 0)}
+                expense.value * expense.exchangeRates[expense.currency].ask), 0))
+              .toFixed(2)}
           </h4>
           <h4 data-testid="header-currency-field">BRL</h4>
         </header>
@@ -123,25 +131,46 @@ class Wallet extends React.Component {
         <table>
           <thead>
             <tr>
-              <td>Descrição</td>
-              <td>Tag</td>
-              <td>Método de pagamento</td>
-              <td>Valor</td>
-              <td>Câmbio utilizado</td>
-              <td>Valor convertido</td>
-              <td>Moeda de conversão</td>
+              <th>Descrição</th>
+              <th>Tag</th>
+              <th>Método de pagamento</th>
+              <th>Valor</th>
+              <th>Moeda</th>
+              <th>Câmbio utilizado</th>
+              <th>Valor convertido</th>
+              <th>Moeda de conversão</th>
+              <th>Editar/Excluir</th>
             </tr>
           </thead>
           <tbody>
             {expenses.map((expense) => (
-              <tr key={ expense.id }>
+              <tr key={ expense.id } id={ expense.id }>
                 <td>{expense.description}</td>
                 <td>{expense.tag}</td>
                 <td>{expense.method}</td>
                 <td>{expense.value}</td>
-                <td>{expense.currency}</td>
-                <td>{expense.value * expense.exchangeRates[expense.currency].ask}</td>
                 <td>{expense.exchangeRates[expense.currency].name}</td>
+                <td>
+                  {
+                    Number(expense.exchangeRates[expense.currency].ask).toFixed(2)
+                  }
+                </td>
+                <td>
+                  {
+                    (Number(expense.value)
+                    * Number(expense.exchangeRates[expense.currency].ask)).toFixed(2)
+                  }
+                </td>
+                <td>Real</td>
+                <td>
+                  <button
+                    type="button"
+                    onClick={ (e) => this.deleteFunc(e) }
+                    data-testid="delete-btn"
+                  >
+                    Deletar
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
@@ -159,6 +188,7 @@ Wallet.propTypes = {
 const mapDispatchToProps = (dispatch) => ({
   dispatchCurrenciesToProp: () => dispatch(dispatchCurrencies()),
   dispatchExpense: (state) => dispatch(saveExpense(state)),
+  removeExpense: (id) => dispatch(deleteExpense(id)),
 });
 
 const mapStateToProps = (state) => ({
