@@ -1,7 +1,7 @@
 /* stylelint-disable selector-list-comma-space-before */
 
 /* stylelint-disable selector-list-comma-space-after */
-.header-title {
+.login-header-title {
   background-color: transparent;
   color: rgb(66, 66, 66);
   font-family: Gotham, sans-serif;
@@ -16,15 +16,15 @@
   height: 100vh;
 }
 
-.main__div {
+.login-main__div {
   margin: 0 auto 10%;
 }
 
-.main__div__img {
+.login-main__div__img {
   width: 35px;
 }
 
-.main__form {
+.login-main__form {
   background-color: rgba(248, 248, 248, 0.8);
   color: rgb(66, 66, 66);
   display: flex;
@@ -35,12 +35,12 @@
   width: 40%;
 }
 
-.form__label {
+.login-form__label {
   font-size: 150%;
   width: 80%;
 }
 
-.form__label__input {
+.login-form__label__input {
   background-color: inherit;
   border: transparent;
   border-bottom: 1px solid black;
@@ -52,19 +52,19 @@
   width: 100%;
 }
 
-.form__label__input:focus {
+.login-form__label__input:focus {
   border-color: rgb(114, 175, 89);
   outline: none;
 }
 
-.form__label__input:-webkit-autofill,
-.form__label__input:-webkit-autofill:hover,
-.form__label__input:-webkit-autofill:focus,
-.form__label__input:-webkit-autofill:active {
+.login-form__label__input:-webkit-autofill,
+.login-form__label__input:-webkit-autofill:hover,
+.login-form__label__input:-webkit-autofill:focus,
+.login-form__label__input:-webkit-autofill:active {
   transition: background-color, 5000s ease-in-out 0s;
 }
 
-.form__button {
+.login-form__button {
   border: 0 transparent;
   border-radius: 5px;
   cursor: pointer;
@@ -74,21 +74,21 @@
   width: 60%;
 }
 
-.form__button:enabled {
+.login-form__button:enabled {
   background-color: rgb(114, 175, 89);
   color: white;
 }
 
-.form__button:disabled {
+.login-form__button:disabled {
   background-color: rgb(136, 172, 122);
   cursor: not-allowed;
 }
 
-.form__button:enabled:hover {
+.login-form__button:enabled:hover {
   background-color: rgb(86, 134, 68);
 }
 
-.form__button:disabled:hover {
+.login-form__button:disabled:hover {
   cursor: not-allowed;
 }
 

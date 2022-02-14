@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { fetchCurrencies, saveExpense } from '../actions';
-import Expense from '../components/Expense';
+import Expenses from '../components/Expenses';
 import './Wallet.css';
 
 class Wallet extends React.Component {
@@ -55,44 +56,54 @@ class Wallet extends React.Component {
 
     return (
       <>
-        <header>
-          <h4 data-testid="email-field">{email}</h4>
+        <header className="wallet-header">
+          <h4 data-testid="email-field" className="wallet-header__email">
+            {
+              email || <Link to="/" className="login__h4-email">Login</Link>
+            }
+          </h4>
           <h3 data-testid="total-field">
+            Total expense:
+            {' '}
             {
               expenses
                 .reduce((acc, expense) => acc + (
                   expense.value * expense.exchangeRates[expense.currency].ask), 0)
                 .toFixed(2)
             }
+            R$
           </h3>
-          <h4 data-testid="header-currency-field">BRL</h4>
+          <h4 data-testid="header-currency-field">Currency: BRL</h4>
         </header>
 
-        <form>
+        <form className="wallet-form">
           <label htmlFor="value">
-            Valor
+            Valor:
             <input
               data-testid="value-input"
               id="value"
               value={ value }
               onChange={ this.handleInput }
               placeholder="0"
+              className="wallet-form__label__input-value"
             />
           </label>
           <label htmlFor="description">
-            Descrição
+            Descrição:
             <input
               data-testid="description-input"
               id="description"
               onChange={ this.handleInput }
+              className="wallet-form__label__input"
             />
           </label>
           <label htmlFor="currency">
-            Moeda
+            Moeda:
             <select
               data-testid="currency-input"
               id="currency"
               onChange={ this.handleInput }
+              className="wallet-form__label__select"
             >
               {
                 Object.keys(currencies)
@@ -110,11 +121,12 @@ class Wallet extends React.Component {
             </select>
           </label>
           <label htmlFor="method">
-            Método de pagamento
+            Método de pagamento:
             <select
               data-testid="method-input"
               id="method"
               onChange={ this.handleInput }
+              className="wallet-form__label__select"
             >
               <option>Dinheiro</option>
               <option>Cartão de débito</option>
@@ -122,11 +134,12 @@ class Wallet extends React.Component {
             </select>
           </label>
           <label htmlFor="tag">
-            Categoria
+            Categoria:
             <select
               data-testid="tag-input"
               id="tag"
               onChange={ this.handleInput }
+              className="wallet-form__label__select"
             >
               <option>Alimentação</option>
               <option>Lazer</option>
@@ -139,22 +152,27 @@ class Wallet extends React.Component {
             type="button"
             onClick={ () => this.saveButton() }
             disabled={ !value }
+            className="wallet__button"
           >
             Adicionar despesa
           </button>
         </form>
-        <table>
-          <thead>
-            <tr>
-              {ths.map((th, i) => <th key={ `${th}-${i}` }>{ th }</th>)}
+        <table className="wallet-table">
+          <thead className="wallet-table__thead">
+            <tr className="wallet-table__thead__tr">
+              {ths.map((th, i) => (
+                <th
+                  className="wallet-table__thead__tr__th"
+                  key={ `${th}-${i}` }
+                >
+                  { th }
+                </th>))}
             </tr>
           </thead>
-          <tbody>
-            {expenses.map((expense, i) => (
-              <Expense
-                key={ i }
-                expense={ expense }
-              />))}
+          <tbody className="wallet-table__tbody">
+            <Expenses
+              expenses={ expenses }
+            />
           </tbody>
         </table>
       </>
