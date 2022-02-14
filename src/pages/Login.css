@@ -1,6 +1,3 @@
-/* stylelint-disable selector-list-comma-space-before */
-
-/* stylelint-disable selector-list-comma-space-after */
 .login-header-title {
   background-color: transparent;
   color: rgb(66, 66, 66);
@@ -57,9 +54,18 @@
   outline: none;
 }
 
-.login-form__label__input:-webkit-autofill,
-.login-form__label__input:-webkit-autofill:hover,
-.login-form__label__input:-webkit-autofill:focus,
+.login-form__label__input:-webkit-autofill {
+  transition: background-color, 5000s ease-in-out 0s;
+}
+
+.login-form__label__input:-webkit-autofill:hover {
+  transition: background-color, 5000s ease-in-out 0s;
+}
+
+.login-form__label__input:-webkit-autofill:focus {
+  transition: background-color, 5000s ease-in-out 0s;
+}
+
 .login-form__label__input:-webkit-autofill:active {
   transition: background-color, 5000s ease-in-out 0s;
 }

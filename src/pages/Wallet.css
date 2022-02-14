@@ -73,11 +73,24 @@ body {
   outline: none;
 }
 
-.wallet-form__label__input:-webkit-autofill {
+.wallet-form__label__input-value:focus {
+  border-color: rgb(114, 175, 89);
+  outline: none;
+}
+
+.wallet-form__label__input-value:-webkit-autofill {
   transition: background-color, 5000s ease-in-out 0s;
 }
 
-.wallet-form__label__input:-webkit-autofill:hover {
+.wallet-form__label__input-value:-webkit-autofill:focus {
+  transition: background-color, 5000s ease-in-out 0s;
+}
+
+.wallet-form__label__input-value:-webkit-autofill:active {
+  transition: background-color, 5000s ease-in-out 0s;
+}
+
+.wallet-form__label__input:-webkit-autofill {
   transition: background-color, 5000s ease-in-out 0s;
 }
 
@@ -86,10 +99,6 @@ body {
 }
 
 .wallet-form__label__input:-webkit-autofill:active {
-  transition: background-color, 5000s ease-in-out 0s;
-}
-
-.wallet-form__label__select:-webkit-autofill:hover {
   transition: background-color, 5000s ease-in-out 0s;
 }
 

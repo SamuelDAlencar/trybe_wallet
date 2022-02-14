@@ -41,6 +41,7 @@ class Wallet extends React.Component {
       saveExpenseProp(this.state);
       this.setState((prevState) => ({
         value: '',
+        description: '',
         id: prevState.id + 1,
       }));
     });
@@ -48,7 +49,7 @@ class Wallet extends React.Component {
 
   render() {
     const { email, currencies, expenses } = this.props;
-    const { value } = this.state;
+    const { value, description } = this.state;
     const ths = [
       'Descrição', 'Tag', 'Método de pagamento', 'Valor', 'Moeda', 'Câmbio utilizado',
       'Valor convertido', 'Moeda de conversão', 'Editar/Excluir',
@@ -93,6 +94,7 @@ class Wallet extends React.Component {
             <input
               data-testid="description-input"
               id="description"
+              value={ description }
               onChange={ this.handleInput }
               className="wallet-form__label__input"
             />
