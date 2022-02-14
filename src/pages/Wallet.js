@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import { fetchCurrencies, saveExpense } from '../actions';
 import Expense from '../components/Expense';
+import './Wallet.css';
 
 class Wallet extends React.Component {
   constructor() {
@@ -149,12 +150,11 @@ class Wallet extends React.Component {
             </tr>
           </thead>
           <tbody>
-            { expenses
-              && expenses.map((expense, i) => (
-                <Expense
-                  key={ i }
-                  expense={ expense }
-                />))}
+            {expenses.map((expense, i) => (
+              <Expense
+                key={ i }
+                expense={ expense }
+              />))}
           </tbody>
         </table>
       </>

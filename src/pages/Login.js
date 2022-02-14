@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Proptypes from 'prop-types';
 import { logIn } from '../actions/index';
+import './Login.css';
 
 class Login extends React.Component {
   constructor() {
@@ -43,33 +44,42 @@ class Login extends React.Component {
   render() {
     const { buttonDisabled } = this.state;
     return (
-      <form>
-        <label htmlFor="email">
-          Email
-          <input
-            type="email"
-            id="email"
-            data-testid="email-input"
-            onChange={ (e) => this.handleInput(e) }
-          />
-        </label>
-        <label htmlFor="password">
-          Senha
-          <input
-            type="password"
-            id="password"
-            data-testid="password-input"
-            onChange={ (e) => this.handleInput(e) }
-          />
-        </label>
-        <button
-          type="button"
-          disabled={ buttonDisabled }
-          onClick={ this.logButton }
-        >
-          Entrar
-        </button>
-      </form>
+      <main className="login-main">
+        <form className="main__form">
+          <div className="main__div">
+            <h1>Virtual Wallet</h1>
+            <h3>Practical, fast, easy to use, free</h3>
+          </div>
+          <label htmlFor="email" className="form__label">
+            Email
+            <input
+              type="email"
+              id="email"
+              data-testid="email-input"
+              onChange={ (e) => this.handleInput(e) }
+              className="form__label__input"
+            />
+          </label>
+          <label htmlFor="password" className="form__label">
+            Senha
+            <input
+              type="password"
+              id="password"
+              data-testid="password-input"
+              onChange={ (e) => this.handleInput(e) }
+              className="form__label__input"
+            />
+          </label>
+          <button
+            type="button"
+            disabled={ buttonDisabled }
+            onClick={ this.logButton }
+            className="form__button"
+          >
+            Entrar
+          </button>
+        </form>
+      </main>
     );
   }
 }

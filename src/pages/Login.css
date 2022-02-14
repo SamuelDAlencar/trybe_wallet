@@ -1,0 +1,94 @@
+/* stylelint-disable selector-list-comma-space-before */
+
+/* stylelint-disable selector-list-comma-space-after */
+.header-title {
+  background-color: transparent;
+  color: rgb(66, 66, 66);
+  font-family: Gotham, sans-serif;
+  font-size: 150%;
+}
+
+.login-main {
+  background: url('../images/phone_3-2.jpg');
+  background-position: center;
+  background-size: cover;
+  font-family: Gotham, sans-serif;
+  height: 100vh;
+}
+
+.main__div {
+  margin: 0 auto 10%;
+}
+
+.main__div__img {
+  width: 35px;
+}
+
+.main__form {
+  background-color: rgba(248, 248, 248, 0.8);
+  color: rgb(66, 66, 66);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: space-between;
+  padding: 0 40px;
+  width: 40%;
+}
+
+.form__label {
+  font-size: 150%;
+  width: 80%;
+}
+
+.form__label__input {
+  background-color: inherit;
+  border: transparent;
+  border-bottom: 1px solid black;
+  border-radius: 5px;
+  color: rgb(66, 66, 66);
+  font-size: 80%;
+  margin: 15% 5% 3%;
+  padding: 4%;
+  width: 100%;
+}
+
+.form__label__input:focus {
+  border-color: rgb(114, 175, 89);
+  outline: none;
+}
+
+.form__label__input:-webkit-autofill,
+.form__label__input:-webkit-autofill:hover,
+.form__label__input:-webkit-autofill:focus,
+.form__label__input:-webkit-autofill:active {
+  transition: background-color, 5000s ease-in-out 0s;
+}
+
+.form__button {
+  border: 0 transparent;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 150%;
+  margin: 6% auto 15%;
+  padding: 2%;
+  width: 60%;
+}
+
+.form__button:enabled {
+  background-color: rgb(114, 175, 89);
+  color: white;
+}
+
+.form__button:disabled {
+  background-color: rgb(136, 172, 122);
+  cursor: not-allowed;
+}
+
+.form__button:enabled:hover {
+  background-color: rgb(86, 134, 68);
+}
+
+.form__button:disabled:hover {
+  cursor: not-allowed;
+}
+
