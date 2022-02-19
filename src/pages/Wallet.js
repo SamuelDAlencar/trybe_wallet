@@ -2,9 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { fetchCurrencies, saveExpense } from '../actions';
+import {
+  fetchCurrencies, saveExpense, editExpense, editMode as editModeAction,
+} from '../actions';
 import Expenses from '../components/Expenses';
-import './Wallet.css';
+import './css/Wallet.css';
 
 class Wallet extends React.Component {
   constructor() {
@@ -18,6 +20,7 @@ class Wallet extends React.Component {
         method: 'Dinheiro',
         tag: 'Alimentação',
       },
+      assistId: 0,
     };
   }
 
@@ -33,10 +36,9 @@ class Wallet extends React.Component {
         [target.id]: target.value ? target.value : target.selectedIndex,
       },
     }));
-    console.log(this.state);
   }
 
-  saveButton = () => {
+  saveExpense = () => {
     const { fetchCurrenciesProp, saveExpenseProp } = this.props;
     fetchCurrenciesProp();
     const { currencies } = this.props;
@@ -60,9 +62,40 @@ class Wallet extends React.Component {
     });
   }
 
+  editToggle = ({ target }) => {
+    const { editModeProp, expenses } = this.props;
+    editModeProp(true);
+    const { parentNode: { parentNode: { id } } } = target;
+    this.setState((prevState) => ({
+      expense: expenses[id],
+      assistId: prevState.expense.id,
+    }));
+  }
+
+  editExpense = () => {
+    const { editExpenseProp, editModeProp } = this.props;
+    const { expense, expense: { id }, assistId } = this.state;
+
+    editExpenseProp(id, expense);
+    editModeProp(false);
+    this.setState((prevState) => ({
+      expense: {
+        ...prevState.expense,
+        value: '',
+        description: '',
+        id: assistId,
+      },
+    }));
+  }
+
   render() {
-    const { email, currencies, expenses } = this.props;
-    const { expense: { value, description } } = this.state;
+    const { email, currencies, expenses, editMode } = this.props;
+    const {
+      expense: {
+        value, description, method, currency, tag, id,
+      },
+    } = this.state;
+
     const ths = [
       'Descrição', 'Tag', 'Método de pagamento', 'Valor', 'Moeda', 'Câmbio utilizado',
       'Valor convertido', 'Moeda de conversão', 'Editar/Excluir',
@@ -90,7 +123,7 @@ class Wallet extends React.Component {
           <h4 data-testid="header-currency-field">Currency: BRL</h4>
         </header>
 
-        <form className="wallet-form">
+        <form className={ editMode ? 'wallet-edit-form' : 'wallet-form' }>
           <label htmlFor="value">
             Valor:
             <input
@@ -119,17 +152,18 @@ class Wallet extends React.Component {
               id="currency"
               onChange={ this.handleInput }
               className="wallet-form__label__select"
+              value={ currency }
             >
               {
                 Object.keys(currencies)
-                  .map((currency, i) => (
-                    currency !== 'USDT'
+                  .map((currCurrency, i) => (
+                    currCurrency !== 'USDT'
                       && (
                         <option
-                          key={ `${currency}-${i}` }
-                          data-testid={ currency }
+                          key={ `${currCurrency}-${i}` }
+                          data-testid={ currCurrency }
                         >
-                          {currency}
+                          {currCurrency}
                         </option>)
                   ))
               }
@@ -142,6 +176,7 @@ class Wallet extends React.Component {
               id="method"
               onChange={ this.handleInput }
               className="wallet-form__label__select"
+              value={ method }
             >
               <option>Dinheiro</option>
               <option>Cartão de débito</option>
@@ -155,6 +190,7 @@ class Wallet extends React.Component {
               id="tag"
               onChange={ this.handleInput }
               className="wallet-form__label__select"
+              value={ tag }
             >
               <option>Alimentação</option>
               <option>Lazer</option>
@@ -165,11 +201,11 @@ class Wallet extends React.Component {
           </label>
           <button
             type="button"
-            onClick={ () => this.saveButton() }
+            onClick={ editMode ? () => this.editExpense() : () => this.saveExpense() }
             disabled={ !value }
             className="wallet__button"
           >
-            Adicionar despesa
+            { editMode ? 'Editar despesa' : 'Adicionar despesa' }
           </button>
         </form>
         <table className="wallet-table">
@@ -187,6 +223,8 @@ class Wallet extends React.Component {
           <tbody className="wallet-table__tbody">
             <Expenses
               expenses={ expenses }
+              id={ id }
+              editMode={ this.editToggle }
             />
           </tbody>
         </table>
@@ -206,12 +244,15 @@ Wallet.propTypes = {
 const mapDispatchToProps = (dispatch) => ({
   fetchCurrenciesProp: () => dispatch(fetchCurrencies()),
   saveExpenseProp: (expense) => dispatch(saveExpense(expense)),
+  editModeProp: (bool) => dispatch(editModeAction(bool)),
+  editExpenseProp: (id, editedExpense) => dispatch(editExpense(id, editedExpense)),
 });
 
 const mapStateToProps = (state) => ({
   email: state.user.email,
   currencies: state.wallet.currencies,
   expenses: state.wallet.expenses,
+  editMode: state.wallet.editMode,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Wallet);

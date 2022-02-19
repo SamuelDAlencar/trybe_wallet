@@ -1,26 +1,27 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { deleteExpense, editExpense } from '../actions';
+import { deleteExpense, editMode as editModeAction } from '../actions';
 
 class Expenses extends Component {
   deleteButton = ({ target }) => {
-    const { deleteExpenseProp } = this.props;
+    const { deleteExpenseProp, editModeProp } = this.props;
     const { parentNode: { parentNode: { id } } } = target;
     deleteExpenseProp(id);
-  }
-
-  editButton = ({ target }) => {
-    const { editExpenseProp } = this.props;
-    const { parentNode: { parentNode: { id } } } = target;
-    editExpenseProp(id);
+    editModeProp(false);
   }
 
   render() {
-    const { expenses } = this.props;
+    const { expenses, editMode, id } = this.props;
     return (
       expenses.map((expense) => (
-        <tr key={ expense.id } id={ expense.id } className="wallet__expense">
+        <tr
+          key={ expense.id }
+          id={ expense.id }
+          className={
+            (editMode && (expense.id === id)) ? 'wallet__edit-expense' : 'wallet__expense'
+          }
+        >
           <td
             className="wallet__expense__td"
           >
@@ -51,7 +52,7 @@ class Expenses extends Component {
           <td className="wallet__expense__td">
             <button
               type="button"
-              onClick={ (e) => this.editButton(e) }
+              onClick={ (e) => editMode(e) }
               data-testid="edit-btn"
               className="wallet__button"
             >
@@ -61,7 +62,7 @@ class Expenses extends Component {
               type="button"
               onClick={ (e) => this.deleteButton(e) }
               data-testid="delete-btn"
-              className="wallet__button"
+              className="wallet__delete-button"
             >
               Excluir
             </button>
@@ -75,12 +76,11 @@ class Expenses extends Component {
 Expenses.propTypes = {
   expense: propTypes.array,
   deleteExpenseProp: propTypes.func,
-  editExpenseProp: propTypes.func,
 }.isRequired;
 
 const mapDispatchToProps = (dispatch) => ({
   deleteExpenseProp: (id) => dispatch(deleteExpense(id)),
-  editExpenseProp: (expense) => dispatch(editExpense(expense)),
+  editModeProp: (bool) => dispatch(editModeAction(bool)),
 });
 
 export default connect(null, mapDispatchToProps)(Expenses);

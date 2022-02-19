@@ -1,10 +1,13 @@
+* {
+  font-family: Gotham, sans-serif;
+}
+
 body {
   box-sizing: border-box;
 }
 
-.wallet-header , .wallet-form , .wallet-table {
+.wallet-header , .wallet-form , .wallet-edit-form , .wallet-table {
   color: rgb(66, 66, 66);
-  font-family: Gotham, sans-serif;
 }
 
 .wallet-header {
@@ -32,6 +35,14 @@ body {
 .wallet-form {
   align-items: center;
   background-color: rgb(226, 226, 226);
+  display: flex;
+  justify-content: space-around;
+  padding: 1%;
+}
+
+.wallet-edit-form {
+  align-items: center;
+  background-color: rgb(255, 234, 203);
   display: flex;
   justify-content: space-around;
   padding: 1%;
@@ -116,11 +127,6 @@ body {
   width: 99%;
 }
 
-/* .wallet-table__thead {
-}
-
-.wallet-table__thead__tr {
-} */
 
 .wallet-table__thead__tr__th {
   border: 1px solid rgb(114, 175, 89);
@@ -134,14 +140,31 @@ body {
   text-align: center;
 }
 
+.wallet__edit-expense {
+  animation-direction: alternate;
+  animation-duration: 400ms;
+  animation-iteration-count: infinite;
+  animation-name: blink;
+  background-color: rgb(255, 234, 203);
+  padding: 5px;
+  text-align: center;
+}
+
+@keyframes blink {
+
+  from {
+    background-color: rgb(226, 226, 226);
+  }
+
+  to {
+    background-color: rgb(255, 234, 203);
+  }
+}
+
 .wallet__expense__td {
   border: 1px solid rgb(168, 168, 168);
   border-collapse: collapse;
   border-spacing: 10px;
-
-  /* max-width: 500px; */
-
-  /* overflow: auto; */
   padding: 1px 5px;
 }
 
@@ -152,6 +175,20 @@ body {
   cursor: pointer;
   margin: 5px 2px;
   padding: 10px;
+}
+
+.wallet__delete-button {
+  background-color: rgb(136, 172, 122);
+  border: 0 transparent;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  margin: 5px 2px;
+  padding: 10px;
+}
+
+.wallet__delete-button:hover {
+  background-color: rgb(255, 140, 140);
 }
 
 .wallet__button:enabled {

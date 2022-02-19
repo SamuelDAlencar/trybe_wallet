@@ -1,13 +1,14 @@
 import {
-  REQUEST_CURRENCIES, SAVE_EXPENSE, DELETE_EXPENSE, EDIT_EXPENSE,
+  REQUEST_CURRENCIES, SAVE_EXPENSE, DELETE_EXPENSE, EDIT_MODE, EDIT_EXPENSE,
 } from '../actions/index';
 
 const INITIAL_STATE = {
   currencies: [],
   expenses: [],
+  editMode: false,
 };
 
-const walletReducer = (state = INITIAL_STATE, { type, payload }) => {
+const walletReducer = (state = INITIAL_STATE, { type, payload, id, editedExpense }) => {
   switch (type) {
   case REQUEST_CURRENCIES:
     return {
@@ -23,10 +24,19 @@ const walletReducer = (state = INITIAL_STATE, { type, payload }) => {
       expenses: state.expenses
         .filter((expense) => Number(expense.id) !== Number(payload)),
     };
+  case EDIT_MODE:
+    return {
+      ...state,
+      editMode: payload,
+    };
   case EDIT_EXPENSE:
     return {
       ...state,
-      test: payload,
+      expenses: [
+        ...state.expenses
+          .filter((expense) => Number(expense.id) !== Number(id)),
+        editedExpense,
+      ].sort((a, b) => a.id - b.id),
     };
   default:
     return state;
