@@ -10,15 +10,15 @@ class Wallet extends React.Component {
   constructor() {
     super();
     this.state = {
-      id: 0,
-      value: '',
-      description: '',
-      currency: 'USD',
-      method: 'Dinheiro',
-      tag: 'Alimentação',
+      expense: {
+        id: 0,
+        value: '',
+        description: '',
+        currency: 'USD',
+        method: 'Dinheiro',
+        tag: 'Alimentação',
+      },
     };
-    this.handleInput = this.handleInput.bind(this);
-    this.saveButton = this.saveButton.bind(this);
   }
 
   componentDidMount() {
@@ -26,30 +26,43 @@ class Wallet extends React.Component {
     fetchCurrenciesProp();
   }
 
-  handleInput({ target }) {
-    this.setState({
-      [target.id]: target.value ? target.value : target.selectedIndex,
-    });
+  handleInput = ({ target }) => {
+    this.setState((prevState) => ({
+      expense: {
+        ...prevState.expense,
+        [target.id]: target.value ? target.value : target.selectedIndex,
+      },
+    }));
+    console.log(this.state);
   }
 
-  saveButton() {
+  saveButton = () => {
     const { fetchCurrenciesProp, saveExpenseProp } = this.props;
     fetchCurrenciesProp();
-
     const { currencies } = this.props;
-    this.setState({ exchangeRates: currencies }, () => {
-      saveExpenseProp(this.state);
+
+    this.setState((prevState) => ({
+      expense: {
+        ...prevState.expense,
+        exchangeRates: currencies,
+      },
+    }), () => {
+      const { expense } = this.state;
+      saveExpenseProp(expense);
       this.setState((prevState) => ({
-        value: '',
-        description: '',
-        id: prevState.id + 1,
+        expense: {
+          ...prevState.expense,
+          value: '',
+          description: '',
+          id: prevState.expense.id + 1,
+        },
       }));
     });
   }
 
   render() {
     const { email, currencies, expenses } = this.props;
-    const { value, description } = this.state;
+    const { expense: { value, description } } = this.state;
     const ths = [
       'Descrição', 'Tag', 'Método de pagamento', 'Valor', 'Moeda', 'Câmbio utilizado',
       'Valor convertido', 'Moeda de conversão', 'Editar/Excluir',

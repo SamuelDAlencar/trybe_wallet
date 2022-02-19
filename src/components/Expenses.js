@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { deleteExpense } from '../actions';
+import { deleteExpense, editExpense } from '../actions';
 
 class Expenses extends Component {
-  constructor() {
-    super();
-
-    this.deleteButton = this.deleteButton.bind(this);
-  }
-
-  deleteButton({ target }) {
+  deleteButton = ({ target }) => {
     const { deleteExpenseProp } = this.props;
     const { parentNode: { parentNode: { id } } } = target;
     deleteExpenseProp(id);
+  }
+
+  editButton = ({ target }) => {
+    const { editExpenseProp } = this.props;
+    const { parentNode: { parentNode: { id } } } = target;
+    editExpenseProp(id);
   }
 
   render() {
@@ -51,7 +51,7 @@ class Expenses extends Component {
           <td className="wallet__expense__td">
             <button
               type="button"
-              // onClick={}
+              onClick={ (e) => this.editButton(e) }
               data-testid="edit-btn"
               className="wallet__button"
             >
@@ -75,10 +75,12 @@ class Expenses extends Component {
 Expenses.propTypes = {
   expense: propTypes.array,
   deleteExpenseProp: propTypes.func,
+  editExpenseProp: propTypes.func,
 }.isRequired;
 
 const mapDispatchToProps = (dispatch) => ({
   deleteExpenseProp: (id) => dispatch(deleteExpense(id)),
+  editExpenseProp: (expense) => dispatch(editExpense(expense)),
 });
 
 export default connect(null, mapDispatchToProps)(Expenses);
