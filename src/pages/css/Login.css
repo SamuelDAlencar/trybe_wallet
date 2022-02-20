@@ -74,10 +74,9 @@
   border: 0 transparent;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 150%;
+  font-size: 200%;
   margin: 6% auto 15%;
-  padding: 2%;
-  width: 60%;
+  padding: 4% 7%;
 }
 
 .login-form__button:enabled {
