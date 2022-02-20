@@ -45,7 +45,7 @@ class Login extends React.Component {
     const { buttonDisabled } = this.state;
     return (
       <main className="login-main">
-        <form className="login-main__form">
+        <form autoComplete="off" className="login-main__form">
           <div className="login-main__div">
             <h1>Virtual Wallet</h1>
             <h3>Practical, fast, easy to use, free</h3>

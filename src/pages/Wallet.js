@@ -67,7 +67,7 @@ class Wallet extends React.Component {
     editModeProp(true);
     const { parentNode: { parentNode: { id } } } = target;
     this.setState((prevState) => ({
-      expense: expenses[id],
+      expense: expenses.find((expense) => expense.id === Number(id)),
       assistId: prevState.expense.id,
     }));
   }
@@ -123,8 +123,11 @@ class Wallet extends React.Component {
           <h4 data-testid="header-currency-field">Currency: BRL</h4>
         </header>
 
-        <form className={ editMode ? 'wallet-edit-form' : 'wallet-form' }>
-          <label htmlFor="value">
+        <form
+          autoComplete="off"
+          className={ editMode ? 'wallet-edit-form' : 'wallet-form' }
+        >
+          <label htmlFor="value" className="wallet-form__label">
             Valor:
             <input
               data-testid="value-input"
@@ -135,7 +138,7 @@ class Wallet extends React.Component {
               className="wallet-form__label__input-value"
             />
           </label>
-          <label htmlFor="description">
+          <label htmlFor="description" className="wallet-form__label">
             Descrição:
             <input
               data-testid="description-input"
@@ -145,7 +148,7 @@ class Wallet extends React.Component {
               className="wallet-form__label__input"
             />
           </label>
-          <label htmlFor="currency">
+          <label htmlFor="currency" className="wallet-form__label">
             Moeda:
             <select
               data-testid="currency-input"
@@ -169,7 +172,7 @@ class Wallet extends React.Component {
               }
             </select>
           </label>
-          <label htmlFor="method">
+          <label htmlFor="method" className="wallet-form__label">
             Método de pagamento:
             <select
               data-testid="method-input"
@@ -183,7 +186,7 @@ class Wallet extends React.Component {
               <option>Cartão de crédito</option>
             </select>
           </label>
-          <label htmlFor="tag">
+          <label htmlFor="tag" className="wallet-form__label">
             Categoria:
             <select
               data-testid="tag-input"

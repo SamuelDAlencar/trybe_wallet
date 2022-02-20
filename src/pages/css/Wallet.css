@@ -13,6 +13,7 @@ body {
 .wallet-header {
   background-color: rgb(136, 172, 122);
   display: flex;
+  font-size: 150%;
   justify-content: space-between;
   padding: 0 5%;
 }
@@ -48,6 +49,11 @@ body {
   padding: 1%;
 }
 
+.wallet-form__label {
+  font-size: 140%;
+  text-align: center;
+}
+
 
 .wallet-form__label__input , .wallet-form__label__input-value {
   background-color: inherit;
@@ -55,8 +61,8 @@ body {
   border-bottom: 1px solid black;
   border-radius: 5px;
   color: rgb(66, 66, 66);
-  font-size: 15px;
-  margin: 3px 0;
+  font-size: 100%;
+  margin: 3px 8px;
   padding: 5px;
 }
 
@@ -74,8 +80,8 @@ body {
   border-bottom: 1px solid black;
   border-radius: 5px;
   color: rgb(66, 66, 66);
-  font-size: 15px;
-  margin: 3px 0;
+  font-size: 100%;
+  margin: 3px 8px;
   padding: 5px;
 }
 
@@ -123,16 +129,22 @@ body {
 
 .wallet-table {
   border-collapse: collapse;
-  margin: 1% auto;
-  width: 99%;
+  font-size: 120%;
+  padding: 15px;
+  table-layout: fixed;
+  width: 100%;
 }
 
+.wallet-table__thead {
+  width: 100%;
+}
 
 .wallet-table__thead__tr__th {
   border: 1px solid rgb(114, 175, 89);
   border-collapse: collapse;
   border-spacing: 10px;
-  padding: 5px;
+  padding: 15px;
+  width: fit-content;
 }
 
 .wallet__expense {
@@ -173,6 +185,7 @@ body {
   border: 0 transparent;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 120%;
   margin: 5px 2px;
   padding: 10px;
 }
@@ -183,6 +196,7 @@ body {
   border-radius: 5px;
   color: white;
   cursor: pointer;
+  font-size: 120%;
   margin: 5px 2px;
   padding: 10px;
 }

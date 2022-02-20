@@ -2,7 +2,6 @@
   background-color: transparent;
   color: rgb(66, 66, 66);
   font-family: Gotham, sans-serif;
-  font-size: 150%;
 }
 
 .login-main {
@@ -14,6 +13,7 @@
 }
 
 .login-main__div {
+  font-size: 140%;
   margin: 0 auto 10%;
 }
 
@@ -33,7 +33,7 @@
 }
 
 .login-form__label {
-  font-size: 150%;
+  font-size: 200%;
   width: 80%;
 }
 
@@ -44,7 +44,7 @@
   border-radius: 5px;
   color: rgb(66, 66, 66);
   font-size: 80%;
-  margin: 15% 5% 3%;
+  margin: 5% 5% 3%;
   padding: 4%;
   width: 100%;
 }
