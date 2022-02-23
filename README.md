@@ -2,7 +2,6 @@
 Projeto feito durante o módulo de front-end na Trybe 💚
 
 # Habilidades
-Neste projeto, verificamos se voce é capaz de:
 
   * Criar um store Redux em aplicações React
 
@@ -15,4 +14,3 @@ Neste projeto, verificamos se voce é capaz de:
   * Conectar Redux aos componentes React
 
   * Criar actions assíncronas na sua aplicação React que faz uso de Redux.
-
