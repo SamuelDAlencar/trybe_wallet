@@ -50,7 +50,7 @@ export default class WalletStructure extends Component {
           className={ editMode ? 'wallet-edit-form' : 'wallet-form' }
         >
           <label htmlFor="value" className="wallet-form__label">
-            Valor:
+            Value:
             <input
               data-testid="value-input"
               id="value"
@@ -61,7 +61,7 @@ export default class WalletStructure extends Component {
             />
           </label>
           <label htmlFor="description" className="wallet-form__label">
-            Descrição:
+            Description:
             <input
               data-testid="description-input"
               id="description"
@@ -71,7 +71,7 @@ export default class WalletStructure extends Component {
             />
           </label>
           <label htmlFor="currency" className="wallet-form__label">
-            Moeda:
+            Currency:
             <select
               data-testid="currency-input"
               id="currency"
@@ -95,7 +95,7 @@ export default class WalletStructure extends Component {
             </select>
           </label>
           <label htmlFor="method" className="wallet-form__label">
-            Método de pagamento:
+            Payment method:
             <select
               data-testid="method-input"
               id="method"
@@ -103,13 +103,13 @@ export default class WalletStructure extends Component {
               className="wallet-form__label__select"
               value={ method }
             >
-              <option>Dinheiro</option>
-              <option>Cartão de débito</option>
-              <option>Cartão de crédito</option>
+              <option>Money</option>
+              <option>Debit</option>
+              <option>Credit</option>
             </select>
           </label>
           <label htmlFor="tag" className="wallet-form__label">
-            Categoria:
+            Tag:
             <select
               data-testid="tag-input"
               id="tag"
@@ -117,11 +117,11 @@ export default class WalletStructure extends Component {
               className="wallet-form__label__select"
               value={ tag }
             >
-              <option>Alimentação</option>
-              <option>Lazer</option>
-              <option>Trabalho</option>
-              <option>Transporte</option>
-              <option>Saúde</option>
+              <option>Food</option>
+              <option>Leisure</option>
+              <option>Work</option>
+              <option>Transportation</option>
+              <option>Health</option>
             </select>
           </label>
           <button
@@ -130,7 +130,7 @@ export default class WalletStructure extends Component {
             disabled={ !value }
             className="wallet__button"
           >
-            { editMode ? 'Editar despesa' : 'Adicionar despesa' }
+            { editMode ? 'Edit expense' : 'Save expense' }
           </button>
         </form>
         <table className="wallet-table">

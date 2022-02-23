@@ -19,7 +19,7 @@ class Expenses extends Component {
           key={ expense.id }
           id={ expense.id }
           className={
-            (editMode && (expense.id === id)) ? 'wallet__edit-expense' : 'wallet__expense'
+            (editMode && expense.id === id) ? 'wallet__edit-expense' : 'wallet__expense'
           }
         >
           <td
@@ -56,7 +56,7 @@ class Expenses extends Component {
               data-testid="edit-btn"
               className="wallet__button"
             >
-              Editar
+              Edit
             </button>
             <button
               type="button"
@@ -64,7 +64,7 @@ class Expenses extends Component {
               data-testid="delete-btn"
               className="wallet__delete-button"
             >
-              Excluir
+              Delete
             </button>
           </td>
         </tr>

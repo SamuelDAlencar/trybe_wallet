@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import {
-  fetchCurrencies, saveExpense, editExpense, editMode as editModeAction,
+  fetchCurrencies, getExpenses, saveExpense, editExpense, editMode as editModeAction,
 } from '../actions';
 import WalletStructure from '../components/WalletStructure';
 import './css/Wallet.css';
@@ -16,8 +16,8 @@ class Wallet extends Component {
         value: '',
         description: '',
         currency: 'USD',
-        method: 'Dinheiro',
-        tag: 'Alimentação',
+        method: 'Money',
+        tag: 'Food',
       },
       assistId: 0,
     };
@@ -26,6 +26,7 @@ class Wallet extends Component {
   componentDidMount() {
     const { fetchCurrenciesProp } = this.props;
     fetchCurrenciesProp();
+    // this.getPreviousExpenses();
   }
 
   handleInput = ({ target }) => {
@@ -57,7 +58,10 @@ class Wallet extends Component {
           description: '',
           id: prevState.expense.id + 1,
         },
-      }));
+      }), () => {
+        // const { expenses } = this.props;
+        // localStorage.setItem('expenses', JSON.stringify(expenses));
+      });
     });
   }
 
@@ -96,8 +100,8 @@ class Wallet extends Component {
     } = this.state;
 
     const ths = [
-      'Descrição', 'Tag', 'Método de pagamento', 'Valor', 'Moeda', 'Câmbio utilizado',
-      'Valor convertido', 'Moeda de conversão', 'Editar/Excluir',
+      'Description', 'Tag', 'Payment Method', 'Value', 'Currency', 'Exchange used',
+      'Converted value', 'Conversion currency', 'Edit/Delete',
     ];
 
     return (
@@ -132,6 +136,7 @@ Wallet.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   fetchCurrenciesProp: () => dispatch(fetchCurrencies()),
+  getExpensesProp: (expenses) => dispatch(getExpenses(expenses)),
   saveExpenseProp: (expense) => dispatch(saveExpense(expense)),
   editModeProp: (bool) => dispatch(editModeAction(bool)),
   editExpenseProp: (id, editedExpense) => dispatch(editExpense(id, editedExpense)),

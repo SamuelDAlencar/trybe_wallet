@@ -1,5 +1,5 @@
 import {
-  REQUEST_CURRENCIES, SAVE_EXPENSE, DELETE_EXPENSE, EDIT_MODE, EDIT_EXPENSE,
+  REQUEST_CURRENCIES, GET_EXPENSES, SAVE_EXPENSE, DELETE_EXPENSE, EDIT_MODE, EDIT_EXPENSE,
 } from '../actions/index';
 
 const INITIAL_STATE = {
@@ -13,6 +13,10 @@ const walletReducer = (state = INITIAL_STATE, { type, payload, id, editedExpense
   case REQUEST_CURRENCIES:
     return {
       ...state, currencies: payload,
+    };
+  case GET_EXPENSES:
+    return {
+      ...state, expenses: [...payload],
     };
   case SAVE_EXPENSE:
     return {

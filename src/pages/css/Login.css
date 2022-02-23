@@ -22,7 +22,9 @@
 }
 
 .login-main__form {
-  background-color: rgba(248, 248, 248, 0.8);
+  backdrop-filter: blur(5px);
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   color: rgb(66, 66, 66);
   display: flex;
   flex-direction: column;
@@ -50,7 +52,7 @@
 }
 
 .login-form__label__input:focus {
-  border-color: rgb(114, 175, 89);
+  border-color: rgb(44, 156, 0);
   outline: none;
 }
 

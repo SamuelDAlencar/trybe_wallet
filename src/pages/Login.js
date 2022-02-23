@@ -61,7 +61,7 @@ class Login extends React.Component {
             />
           </label>
           <label htmlFor="password" className="login-form__label">
-            Senha
+            Password
             <input
               type="password"
               id="password"
@@ -76,7 +76,7 @@ class Login extends React.Component {
             onClick={ this.logButton }
             className="login-form__button"
           >
-            Entrar
+            Log in
           </button>
         </form>
       </main>
