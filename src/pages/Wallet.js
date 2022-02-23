@@ -26,6 +26,7 @@ class Wallet extends Component {
   componentDidMount() {
     const { fetchCurrenciesProp } = this.props;
     fetchCurrenciesProp();
+
     // this.getPreviousExpenses();
   }
 
