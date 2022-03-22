@@ -1,7 +1,7 @@
 # TrybeWallet
 Gerenciador de despesas e conversor de moedas feito durante o módulo de front-end na Trybe 💚
 
-<video src="https://user-images.githubusercontent.com/77287225/159564363-cc5ac6bb-e66a-44e7-9fe8-71a53eca4e41.mp4"></video>
+<video src="https://user-images.githubusercontent.com/77287225/159564584-d8f0f52b-9505-43d7-8741-b6103cf876f4.mp4"></video>
 
 # Habilidades
 
