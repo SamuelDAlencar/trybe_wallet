@@ -17,3 +17,9 @@ Expenses manager and conversor that allows the user to add, edit, and delete exp
   * Connect Redux to React components
 
   * Create asynchronous actions in a React aplications that uses Redux
+
+# How to run and test the application 👨‍💻:
+
+ * Clone this rep: (SSH) `git clone git@github.com:SamuelDAlencar/trybe_wallet.git` in the terminal
+ * Install the dependencies with `npm i`
+ * Start the application with `npm start`
