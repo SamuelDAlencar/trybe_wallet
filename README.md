@@ -6,7 +6,7 @@ Project made during the front end module at Trybe.
 
 <video src="https://user-images.githubusercontent.com/77287225/159564584-d8f0f52b-9505-43d7-8741-b6103cf876f4.mp4"></video>
 
-# Skills put into practice 👨‍💻
+# Skills put into practice ✍
 
   * Create a Redux store in React aplications
 
